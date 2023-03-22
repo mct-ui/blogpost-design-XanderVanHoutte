@@ -7,6 +7,20 @@
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
+@font-face {
+  font-family: "Inter Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Inter-Bold.woff2") format("woff2");
+}
 *,
 *:before,
 *:after {
@@ -36,7 +50,7 @@ img {
 html {
   font-size: 100%;
   line-height: 1.5;
-  font-family: Helvetica, arial, sans-serif;
+  font-family: "droid-serif", Helvetica, arial, sans-serif;
   color: hsl(198.0786026201, 10%, 30%);
   scroll-behavior: smooth;
 }
@@ -58,11 +72,33 @@ html {
     ---
     Default markup for typographic elements
 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter Web", Times, serif;
+  color: hsl(198.0786026201, 10%, 10%);
+}
+
 h1 {
   font-size: 1.8020324707rem;
   font-weight: 700;
   line-height: 2rem;
   margin-bottom: 1.5rem;
+}
+@media (min-width: 36.0625em) {
+  h1 {
+    font-size: 2.8865075782rem;
+    line-height: 3rem;
+  }
+}
+@media (min-width: 48.0625em) {
+  h1 {
+    font-size: 3.6532361537rem;
+    line-height: 4rem;
+  }
 }
 
 h2 {
@@ -174,7 +210,7 @@ a:active {
 }
 
 @media (min-width: 48.0625em) {
-  .o-row--xl {
+  .o-row--l {
     padding: 3rem 3rem 1.5rem;
   }
 }
@@ -312,9 +348,55 @@ a:active {
 /*
     Components: Author
 */
+.c-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+@media (min-width: 62.0625em) {
+  .c-author {
+    flex-direction: column;
+    align-items: unset;
+  }
+}
+
+.c-author__image {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+}
+
+.c-author__caption {
+  padding-top: 0;
+}
+
+.c-author__name,
+.c-author__meta {
+  margin-bottom: 0;
+}
+
+.c-author__name {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.c-author__meta {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  line-height: 24px;
+}
+
 /*
     Components: Quote
 */
+.c-quote {
+  margin: 48px -24px;
+  padding: 24px;
+  color: hsl(161.9213973799, 100%, 35%);
+  background-color: hsl(161.9213973799, 90%, 95%);
+}
+
 /*
     Component: layout block
     ---
@@ -337,6 +419,10 @@ a:active {
     Scope: Content
     Specific behaviour inside s-content class
 */
+.s-content * + h2 {
+  margin-top: 3rem;
+}
+
 /*---------------------------------------/*
  # UTILITIES
 /*---------------------------------------*/

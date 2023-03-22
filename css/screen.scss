@@ -119,8 +119,8 @@ $ms9: calc($ms8 * $ratio); // 52px
 $ms10: calc($ms9 * $ratio); // 58px
 $ms11: calc($ms10 * $ratio); // 66px
 
-$font-family-primary: Helvetica, arial, sans-serif;
-$font-family-secondary: Times, serif;
+$font-family-primary: "droid-serif", Helvetica, arial, sans-serif;
+$font-family-secondary: "Inter Web", Times, serif;
 
 // ---
 // Settings: Spacing
@@ -168,6 +168,22 @@ $columns: (2, 3, 4, 5, 6) !default;
 /*---------------------------------------/*
  # GENERIC
 /*---------------------------------------*/
+
+@font-face {
+  font-family: "Inter Web";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter Web";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/Inter-Bold.woff2") format("woff2");
+}
 
 *,
 *:before,
@@ -221,12 +237,31 @@ html {
     ---
     Default markup for typographic elements
 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-secondary;
+  color: $color-text;
+}
 
 h1 {
   font-size: $ms5;
   font-weight: 700;
   line-height: calc($baseline * 4);
   margin-bottom: $space-m;
+
+  @include mq(bp1) {
+    font-size: $ms9;
+    line-height: calc($baseline * 6);
+  }
+
+  @include mq(bp2) {
+    font-size: $ms11;
+    line-height: calc($baseline * 8);
+  }
 }
 
 h2 {
@@ -338,7 +373,7 @@ a:active {
   color: white;
 }
 
-.o-row--xl {
+.o-row--l {
   @include mq(bp2) {
     padding: $space-xl $space-xl $space-m;
   }
@@ -486,9 +521,54 @@ a:active {
     Components: Author
 */
 
+.c-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+
+  @include mq(bp3) {
+    flex-direction: column;
+    align-items: unset;
+  }
+}
+
+.c-author__image {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+}
+
+.c-author__caption {
+  padding-top: 0;
+}
+
+.c-author__name,
+.c-author__meta {
+  margin-bottom: 0;
+}
+
+.c-author__name {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.c-author__meta {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  line-height: 24px;
+}
+
 /*
     Components: Quote
 */
+
+.c-quote {
+  margin: 48px -24px;
+  padding: 24px;
+  color: get-color(color-teal, 700);
+  background-color: get-color(color-teal, 100);
+}
 
 /*
     Component: layout block
@@ -513,6 +593,10 @@ a:active {
     Scope: Content
     Specific behaviour inside s-content class
 */
+
+.s-content * + h2 {
+  margin-top: $space-xl;
+}
 
 /*---------------------------------------/*
  # UTILITIES
